@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+    <script src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"></script>
+    <script src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css" />
+    <style>
+        #map { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+    </style>
+    <title>Map</title>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var map = L.map('map').setView([53.34410, -6.25349], 15);
+    // {zoomControl: false} for disabling the zoom control panel
+    //map.dragging.disable();
+    // map.touchZoom.disable();
+    // map.doubleClickZoom.disable();
+    // map.scrollWheelZoom.disable();
+    map.options.maxZoom = 20;
+    map.options.minZoom = 15;
+    var gl = L.mapboxGL({
+        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+        accessToken: 'not-needed',
+        style: 'https://api.maptiler.com/maps/aadf3a14-4f30-4fff-8d9a-be1c87d93cd8/style.json?key=rfI2ZvxR38ZaNRUVTDwp'
+    }).addTo(map);
+    var cusIcon = L.icon({
+        iconUrl: 'icon.png',
+        iconSize: [100,131],
+        popupAnchor:[0,-60]
+    });
+    var marker = L.marker([53.34410, -6.25349],{icon: cusIcon}).addTo(map);
+    marker.bindPopup("<h4>Trinity College Dublin</h4><p>This is where we start.</p>");
+</script>
+</body>
+</html>
